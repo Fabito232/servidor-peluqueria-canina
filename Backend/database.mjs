@@ -1,14 +1,8 @@
-import { Sequelize } from 'sequelize'
+import { Sequelize } from 'sequelize';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const sequelize = new Sequelize({
-  dialect: process.env.dialect,
-  host: process.env.HOST,
-  username: process.env.DB_HOSTNAME,
-  password: process.env.PASSWORD,
-  database: process.env.DATABASE,
-});
+const sequelize = new Sequelize(process.env.MYSQL_URL);
 
 // Sincronizar modelos con la base de datos
 sequelize.sync()
@@ -19,4 +13,4 @@ sequelize.sync()
     console.error('Error al sincronizar modelos:', err);
   });
 
-  export default sequelize;
+export default sequelize;
